@@ -4,20 +4,24 @@ const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
+const morgan = require('morgan');
 const Gym = require('./models/gym');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.engine('ejs', ejsMate);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(morgan('dev'));
 
 mongoose.connect('mongodb://localhost:27017/RateMyGym')
     .then(() => {
-        console.log("Connected to mongodb");
+        console.log("Connected to MongoDB");
     })
     .catch(error => {
-        console.log("Connection to mongodb failed");
+        console.log("Connection to MongoDB failed");
         console.log(error);
     });
 
@@ -71,9 +75,14 @@ app.delete('/gyms/:id', async (req, res) => {
     res.redirect('/gyms');
 });
 
+// 404
+app.use((req, res) => {
+    res.status(404).send('404 PAGE NOT FOUND... :(');
+});
+
 
 
 // *** OPENING SERVER ***
 app.listen(3000, () => {
-    console.log('Listening on: http://localhost:3000/');
+    console.log('App running on http://localhost:3000/');
 });

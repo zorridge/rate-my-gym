@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyms</title>
-</head>
-
-<body>
-    <h1>All Gyms</h1>
-    <div>
-        <a href="/gyms/new">Add new gym</a>
-    </div>
-    <ul>
-        <% for( let gym of gyms ) { %>
-        <li><a href="/gyms/<%= gym._id %>"><%= gym.title %></a></li>
-        <% } %>
-    </ul>
-</body>
-
-</html>
+<h1>All Gyms</h1>
+<div>
+    <a href="/gyms/new">Add new gym</a>
+</div>
+<ul>
+    <% for( let gym of gyms ) { %>
+    <li><a href="/gyms/<%= gym._id %>"><%= gym.title %></a></li>
+    <% } %>
+</ul>

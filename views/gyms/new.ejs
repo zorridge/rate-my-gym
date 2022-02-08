@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Gym</title>
-</head>
-
-<body>
-    <h1>Add new gym</h1>
-    <form action="/gyms" method="POST">
-        <div>
-            <label for="title">Name:</label>
-            <input type="text" name="gym[title]" id="title" placeholder="Name of gym" autocomplete="off">
-        </div>
-        <div>
-            <label for="location">Location:</label>
-            <input type="text" name="gym[location]" id="location" placeholder="Location of gym" autocomplete="off">
-        </div>
-        <button>Add Gym</button>
-    </form>
-    <footer>
-        <a href="/gyms">Back to home</a>
-    </footer>
-</body>
-
-</html>
+<h1>Add new gym</h1>
+<form action="/gyms" method="POST">
+    <div>
+        <label for="title">Name:</label>
+        <input type="text" name="gym[title]" id="title" placeholder="Name of gym" autocomplete="off">
+    </div>
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" name="gym[location]" id="location" placeholder="Location of gym" autocomplete="off">
+    </div>
+    <button>Add Gym</button>
+</form>
+<footer>
+    <a href="/gyms">Back to home</a>
+</footer>

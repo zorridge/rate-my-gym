@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Gym</title>
-</head>
-
-<body>
-    <h1>Edit info - <%= gym.title %></h1>
-    <form action="/gyms/<%= gym._id %>?_method=PUT" method="POST">
-        <div>
-            <label for="title">Name:</label>
-            <input type="text" name="gym[title]" id="title" value="<%= gym.title %>" autocomplete="off">
-        </div>
-        <div>
-            <label for="location">Location:</label>
-            <input type="text" name="gym[location]" id="location" value="<%= gym.location %>" autocomplete="off">
-        </div>
-        <button>Update Gym</button>
-    </form>
-    <footer>
-        <a href="/gyms">Back to home</a>
-        <a href="/gyms/<%= gym._id %>">Back to gym</a>
-    </footer>
-</body>
-
-</html>
+<h1>Edit info - <%= gym.title %></h1>
+<form action="/gyms/<%= gym._id %>?_method=PUT" method="POST">
+    <div>
+        <label for="title">Name:</label>
+        <input type="text" name="gym[title]" id="title" value="<%= gym.title %>" autocomplete="off">
+    </div>
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" name="gym[location]" id="location" value="<%= gym.location %>" autocomplete="off">
+    </div>
+    <button>Update Gym</button>
+</form>
+<footer>
+    <a href="/gyms">Back to home</a>
+    <a href="/gyms/<%= gym._id %>">Back to gym</a>
+</footer>

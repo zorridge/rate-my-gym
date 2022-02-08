@@ -6,10 +6,10 @@ const { firstName, lastName } = require('./seednames');
 
 mongoose.connect('mongodb://localhost:27017/RateMyGym')
     .then(() => {
-        console.log("Connected to mongodb");
+        console.log("Connected to MongoDB");
     })
     .catch(error => {
-        console.log("Connection to mongodb failed");
+        console.log("Connection to MongoDB failed");
         console.log(error);
     });
 
