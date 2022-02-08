@@ -2,6 +2,8 @@
 
 <h1><%= gym.title %></h1>
 <h2><%= gym.location %></h2>
+<img src="<%= gym.image %>" alt="<%= gym.title %>">
+<p><%= gym.description %></p>
 <div>
     <form action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
         <button>Delete Gym</button>
