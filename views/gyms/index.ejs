@@ -4,8 +4,14 @@
 <div>
     <a href="/gyms/new">Add new gym</a>
 </div>
-<ul>
-    <% for( let gym of gyms ) { %>
-    <li><a href="/gyms/<%= gym._id %>"><%= gym.title %></a></li>
-    <% } %>
-</ul>
+
+<% for( let gym of gyms ) { %>
+<div class="card mb-3">
+    <img src="<%= gym.image %>" class="card-img-top" alt="<%= gym.title %>" style="height: 500px; object-fit: cover;">
+    <div class="card-body">
+        <h5 class="card-title"><%= gym.title %></h5>
+        <p class="card-text"><%= gym.description %></p>
+        <p class="card-text"><small class="text-muted"><%= gym.location %></small></p>
+    </div>
+</div>
+<% } %>
