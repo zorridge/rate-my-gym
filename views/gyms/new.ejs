@@ -1,17 +1,38 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1>Add new gym</h1>
-<form action="/gyms" method="POST">
-    <div>
-        <label for="title">Name:</label>
-        <input type="text" name="gym[title]" id="title" placeholder="Name of gym" autocomplete="off">
+<h1 class="text-center mb-3">New Gym</h1>
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="/gyms" method="POST">
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="gym[title]" id="title" autocomplete="off">
+                <label class="form-label" for="title">Name</label>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-8">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" name="gym[location]" id="location" autocomplete="off">
+                        <label class="form-label" for="location">Location</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="number" name="gym[price]" id="price" step="0.01">
+                        <label class="form-label" for="price">Price ($)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="gym[image]" id="image" autocomplete="off">
+                <label class="form-label" for="image">Image URL</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="gym[description]" id="description"
+                    style="height: 150px;"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <a class="btn btn-info" href="/gyms">Cancel Add</a>
+            <button class="btn btn-success">Submit Add</button>
+        </form>
     </div>
-    <div>
-        <label for="location">Location:</label>
-        <input type="text" name="gym[location]" id="location" placeholder="Location of gym" autocomplete="off">
-    </div>
-    <button>Add Gym</button>
-</form>
-<footer>
-    <a href="/gyms">Back to home</a>
-</footer>
+</div>

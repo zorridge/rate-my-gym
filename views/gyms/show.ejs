@@ -1,15 +1,20 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1><%= gym.title %></h1>
-<h2><%= gym.location %></h2>
-<img src="<%= gym.image %>" alt="<%= gym.title %>">
-<p><%= gym.description %></p>
-<div>
-    <form action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
-        <button>Delete Gym</button>
-    </form>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <div class="card mb-3">
+            <img src="<%= gym.image %>" class="card-img-top" alt="<%= gym.title %>"
+                style="width: 100%; height: 500px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title"><%= gym.title %></h5>
+                <p class="card-text"><small class="text-muted"><%= gym.location %></small></p>
+                <p class="card-text fw-bold">Membership fee: $<%= gym.price %></p>
+                <p class="card-text"><%= gym.description %></p>
+                <a class="btn btn-info" href="/gyms/<%= gym._id %>/edit">Edit Gym</a>
+                <form class="d-inline" action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete Gym</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-<footer>
-    <a href="/gyms">Back to home</a>
-    <a href="/gyms/<%= gym._id %>/edit">Edit info</a>
-</footer>

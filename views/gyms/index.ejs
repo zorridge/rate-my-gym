@@ -1,17 +1,17 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1>All Gyms</h1>
-<div>
-    <a href="/gyms/new">Add new gym</a>
-</div>
+<h1 class="text-center mb-3">All Gyms</h1>
+<a href="/gyms/new" class="btn btn-primary mb-3">Add Gym</a>
 
 <% for( let gym of gyms ) { %>
 <div class="card mb-3">
-    <img src="<%= gym.image %>" class="card-img-top" alt="<%= gym.title %>" style="height: 500px; object-fit: cover;">
+    <img src="<%= gym.image %>" class="card-img-top" alt="<%= gym.title %>"
+        style="width: 100%; height: 500px; object-fit: cover;">
     <div class="card-body">
         <h5 class="card-title"><%= gym.title %></h5>
         <p class="card-text"><%= gym.description %></p>
         <p class="card-text"><small class="text-muted"><%= gym.location %></small></p>
+        <a href="/gyms/<%= gym._id %>">View <%= gym.title %></a>
     </div>
 </div>
 <% } %>
