@@ -5,29 +5,33 @@
     <div class="col-6 offset-3">
         <form action="/gyms" method="POST">
             <div class="form-floating mb-3">
-                <input class="form-control" type="text" name="gym[title]" id="title" autocomplete="off">
+                <input class="form-control" type="text" name="gym[title]" id="title" placeholder="Name"
+                    autocomplete="off">
                 <label class="form-label" for="title">Name</label>
             </div>
             <div class="row g-2">
                 <div class="col-md-8">
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="text" name="gym[location]" id="location" autocomplete="off">
+                        <input class="form-control" type="text" name="gym[location]" id="location"
+                            placeholder="Location" autocomplete="off">
                         <label class="form-label" for="location">Location</label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <input class="form-control" type="number" name="gym[price]" id="price" step="0.01">
+                        <input class="form-control" type="number" name="gym[price]" id="price" placeholder="Price"
+                            step="0.01">
                         <label class="form-label" for="price">Price ($)</label>
                     </div>
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control" type="text" name="gym[image]" id="image" autocomplete="off">
+                <input class="form-control" type="text" name="gym[image]" id="image" placeholder="Image"
+                    autocomplete="off">
                 <label class="form-label" for="image">Image URL</label>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" name="gym[description]" id="description"
+                <textarea class="form-control" name="gym[description]" id="description" placeholder="Description"
                     style="height: 150px;"></textarea>
                 <label for="description">Description</label>
             </div>
