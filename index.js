@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost:27017/RateMyGym')
 
 
 // *** ROUTING ***
-const validateEntry = (req, res, next) => {
+const validateGym = (req, res, next) => {
     const { error } = gymSchema.validate(req.body);
     if (error) {
         const message = error.details.map(e => e.message).join(', ');
@@ -56,7 +56,7 @@ app.get('/gyms/new', (req, res) => {
     res.render('gyms/new');
 });
 
-app.post('/gyms', validateEntry, catchAsync(async (req, res) => {
+app.post('/gyms', validateGym, catchAsync(async (req, res) => {
     const gymNew = new Gym(req.body.gym);
     await gymNew.save();
     res.redirect(`/gyms/${gymNew._id}`);
@@ -75,7 +75,7 @@ app.get('/gyms/:id/edit', catchAsync(async (req, res) => {
     res.render('gyms/edit', { gym });
 }));
 
-app.put('/gyms/:id', validateEntry, catchAsync(async (req, res) => {
+app.put('/gyms/:id', validateGym, catchAsync(async (req, res) => {
     const { id } = req.params;
     const gymUpdate = await Gym.findByIdAndUpdate(id, { ...req.body.gym });
     // res.send(req.body.gym);
