@@ -9,8 +9,9 @@ const morgan = require('morgan');
 
 const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
-const { gymSchema } = require('./schemaValidation');
+const { gymSchema, reviewSchema } = require('./schemaValidation');
 const Gym = require('./models/gym');
+const Review = require('./models/review');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +43,16 @@ const validateGym = (req, res, next) => {
     }
 };
 
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const message = error.details.map(e => e.message).join(', ');
+        throw new ExpressError(message, 400);
+    } else {
+        next();
+    }
+};
+
 app.get('/', (req, res) => {
     res.redirect('/gyms');
 });
@@ -65,7 +76,7 @@ app.post('/gyms', validateGym, catchAsync(async (req, res) => {
 // Read gym information
 app.get('/gyms/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const gym = await Gym.findById(id);
+    const gym = await Gym.findById(id).populate('reviews');
     res.render('gyms/show', { gym });
 }));
 
@@ -78,7 +89,6 @@ app.get('/gyms/:id/edit', catchAsync(async (req, res) => {
 app.put('/gyms/:id', validateGym, catchAsync(async (req, res) => {
     const { id } = req.params;
     const gymUpdate = await Gym.findByIdAndUpdate(id, { ...req.body.gym });
-    // res.send(req.body.gym);
     res.redirect(`/gyms/${gymUpdate._id}`);
 }));
 
@@ -87,6 +97,24 @@ app.delete('/gyms/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Gym.findByIdAndDelete(id);
     res.redirect('/gyms');
+}));
+
+// Create review
+app.post('/gyms/:id/reviews', validateReview, catchAsync(async (req, res) => {
+    const gym = await Gym.findById(req.params.id);
+    const review = new Review(req.body.review);
+    gym.reviews.push(review);
+    await review.save();
+    await gym.save();
+    res.redirect(`/gyms/${gym._id}`);
+}));
+
+// Delete review
+app.delete('/gyms/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await Gym.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/gyms/${id}`);
 }));
 
 // Error handler
