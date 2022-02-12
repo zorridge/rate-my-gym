@@ -16,5 +16,18 @@
                 </form>
             </div>
         </div>
+        <h2 class="mb-3">Leave a review:</h2>
+        <form class="mb-3" action="">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="range" class="form-range" min="0" max="5" id="rating" name="review[rating]">
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="review[body]" id="body" placeholder="Review"
+                    style="height: 150px;"></textarea>
+                <label for="body">Review</label>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
     </div>
 </div>
