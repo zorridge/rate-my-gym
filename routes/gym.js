@@ -33,6 +33,7 @@ router.get('/new', (req, res) => {
 router.post('/', validateGym, catchAsync(async (req, res) => {
     const gymNew = new Gym(req.body.gym);
     await gymNew.save();
+    req.flash('success', 'Successfully added a new gym!');
     res.redirect(`/gyms/${gymNew._id}`);
 }));
 

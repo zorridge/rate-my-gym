@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const ExpressError = require('./utils/ExpressError');
 const gyms = require('./routes/gym');
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(flash());
 
 const sessionConfig = {
     secret: 'thisisasecret!',
@@ -49,8 +51,13 @@ app.get('/', (req, res) => {
     res.redirect('/gyms');
 });
 
-app.use('/gyms', gyms);
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
 
+app.use('/gyms', gyms);
 app.use('/gyms/:id/reviews', reviews);
 
 
