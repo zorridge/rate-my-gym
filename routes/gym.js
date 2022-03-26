@@ -41,18 +41,27 @@ router.post('/', validateGym, catchAsync(async (req, res) => {
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     const gym = await Gym.findById(id).populate('reviews');
+    if (!gym) {
+        req.flash('error', 'Gym not found!');
+        return res.redirect('/gyms');
+    }
     res.render('gyms/show', { gym });
 }));
 
 // Update gym information
 router.get('/:id/edit', catchAsync(async (req, res) => {
     const gym = await Gym.findById(req.params.id);
+    if (!gym) {
+        req.flash('error', 'Gym not found!');
+        return res.redirect('/gyms');
+    }
     res.render('gyms/edit', { gym });
 }));
 
 router.put('/:id', validateGym, catchAsync(async (req, res) => {
     const { id } = req.params;
     const gymUpdate = await Gym.findByIdAndUpdate(id, { ...req.body.gym });
+    req.flash('success', 'Successfully updated gym!');
     res.redirect(`/gyms/${gymUpdate._id}`);
 }));
 
@@ -60,6 +69,7 @@ router.put('/:id', validateGym, catchAsync(async (req, res) => {
 router.delete('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     await Gym.findByIdAndDelete(id);
+    req.flash('success', 'Successfully deleted gym!');
     res.redirect('/gyms');
 }));
 
