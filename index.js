@@ -12,8 +12,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const ExpressError = require('./utils/ExpressError');
-const gyms = require('./routes/gym');
-const reviews = require('./routes/review');
+const gymRoutes = require('./routes/gym');
+const reviewRoutes = require('./routes/review');
+const userRoutes = require('./routes/user');
 const User = require('./models/user');
 
 app.set('view engine', 'ejs');
@@ -66,8 +67,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/gyms', gyms);
-app.use('/gyms/:id/reviews', reviews);
+app.use('/', userRoutes);
+app.use('/gyms', gymRoutes);
+app.use('/gyms/:id/reviews', reviewRoutes);
 
 
 // Error handler
