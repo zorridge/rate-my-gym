@@ -8,10 +8,13 @@ const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 const ExpressError = require('./utils/ExpressError');
 const gyms = require('./routes/gym');
 const reviews = require('./routes/review');
+const User = require('./models/user');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
-app.use(flash());
 
 const sessionConfig = {
     secret: 'thisisasecret!',
@@ -34,6 +36,13 @@ const sessionConfig = {
     }
 };
 app.use(session(sessionConfig));
+
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 mongoose.connect('mongodb://localhost:27017/RateMyGym')
     .then(() => {
