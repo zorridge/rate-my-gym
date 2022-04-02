@@ -5,6 +5,8 @@ const passport = require('passport');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/user');
 
+
+// *** ROUTING ***
 router.get('/register', (req, res) => {
     res.render('users/register');
 });
