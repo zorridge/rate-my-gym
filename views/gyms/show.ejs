@@ -11,10 +11,15 @@
                 <p class="card-text"><small>Submitted by: <%= gym.author.username %></small></p>
                 <p class="card-text fw-bold">Membership fee: $<%= gym.price %></p>
                 <p class="card-text"><%= gym.description %></p>
-                <a class="btn btn-info" href="/gyms/<%= gym._id %>/edit">Edit</a>
-                <form class="d-inline" action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
+                <% if (currentUser && gym.author.equals(currentUser._id)) { %>
+                <!-- Alternatively, gym.author._id.toString() == currentUser._id.toString() can be used instead to compare ObjectID -->
+                <div>
+                    <a class="btn btn-info" href="/gyms/<%= gym._id %>/edit">Edit</a>
+                    <form class="d-inline" action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <% } %>
             </div>
         </div>
     </div>
