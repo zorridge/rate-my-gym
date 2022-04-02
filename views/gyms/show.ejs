@@ -8,6 +8,7 @@
             <div class="card-body">
                 <h1 class="card-title"><%= gym.title %></h1>
                 <p class="card-text"><small class="text-muted"><%= gym.location %></small></p>
+                <p class="card-text"><small>Submitted by: <%= gym.author.username %></small></p>
                 <p class="card-text fw-bold">Membership fee: $<%= gym.price %></p>
                 <p class="card-text"><%= gym.description %></p>
                 <a class="btn btn-info" href="/gyms/<%= gym._id %>/edit">Edit</a>

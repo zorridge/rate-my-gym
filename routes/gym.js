@@ -33,6 +33,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 router.post('/', isLoggedIn, validateGym, catchAsync(async (req, res) => {
     const gymNew = new Gym(req.body.gym);
+    gymNew.author = req.user._id;
     await gymNew.save();
     req.flash('success', 'Successfully added a new gym!');
     res.redirect(`/gyms/${gymNew._id}`);
@@ -41,7 +42,7 @@ router.post('/', isLoggedIn, validateGym, catchAsync(async (req, res) => {
 // Read gym information
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const gym = await Gym.findById(id).populate('reviews');
+    const gym = await Gym.findById(id).populate('reviews').populate('author');
     if (!gym) {
         req.flash('error', 'Gym not found!');
         return res.redirect('/gyms');
