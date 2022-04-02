@@ -52,16 +52,26 @@ router.get('/:id', catchAsync(async (req, res) => {
 
 // Update gym information
 router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
-    const gym = await Gym.findById(req.params.id);
+    const { id } = req.params;
+    const gym = await Gym.findById(id);
     if (!gym) {
         req.flash('error', 'Gym not found!');
         return res.redirect('/gyms');
+    }
+    if (!gym.author.equals(req.user._id)) {
+        req.flash('error', 'You are not the author of this entry!');
+        return res.redirect(`/gyms/${id}`);
     }
     res.render('gyms/edit', { gym });
 }));
 
 router.put('/:id', isLoggedIn, validateGym, catchAsync(async (req, res) => {
     const { id } = req.params;
+    const gym = await Gym.findById(id);
+    if (!gym.author.equals(req.user._id)) {
+        req.flash('error', 'You are not the author of this entry!');
+        return res.redirect(`/gyms/${id}`);
+    }
     const gymUpdate = await Gym.findByIdAndUpdate(id, { ...req.body.gym });
     req.flash('success', 'Successfully updated gym!');
     res.redirect(`/gyms/${gymUpdate._id}`);
@@ -70,6 +80,11 @@ router.put('/:id', isLoggedIn, validateGym, catchAsync(async (req, res) => {
 // Delete gym
 router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
+    const gym = await Gym.findById(id);
+    if (!gym.author.equals(req.user._id)) {
+        req.flash('error', 'You are not the author of this entry!');
+        return res.redirect(`/gyms/${id}`);
+    }
     await Gym.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted gym!');
     res.redirect('/gyms');
