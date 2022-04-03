@@ -3,7 +3,6 @@ const router = express.Router();
 
 const gyms = require('../controllers/gyms');
 const catchAsync = require('../utils/catchAsync');
-const Gym = require('../models/gym');
 const { isLoggedIn, isAuthor, validateGym } = require('../middleware');
 
 
