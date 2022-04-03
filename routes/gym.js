@@ -7,22 +7,17 @@ const { isLoggedIn, isAuthor, validateGym } = require('../middleware');
 
 
 // *** ROUTING ***
-router.get('/', catchAsync(gyms.index));
+router.route('/')
+    .get(catchAsync(gyms.index))
+    .post(isLoggedIn, validateGym, catchAsync(gyms.createGym));
 
-// Create new gym
 router.get('/new', isLoggedIn, gyms.renderNewForm);
 
-router.post('/', isLoggedIn, validateGym, catchAsync(gyms.createGym));
+router.route('/:id')
+    .get(catchAsync(gyms.showGym))
+    .put(isLoggedIn, isAuthor, validateGym, catchAsync(gyms.updateGym))
+    .delete(isLoggedIn, isAuthor, catchAsync(gyms.deleteGym));
 
-// Read gym information
-router.get('/:id', catchAsync(gyms.showGym));
-
-// Update gym information
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(gyms.renderEditForm));
-
-router.put('/:id', isLoggedIn, isAuthor, validateGym, catchAsync(gyms.updateGym));
-
-// Delete gym
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(gyms.deleteGym));
 
 module.exports = router;
