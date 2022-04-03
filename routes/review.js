@@ -4,13 +4,14 @@ const router = express.Router({ mergeParams: true });
 const catchAsync = require('../utils/catchAsync');
 const Gym = require('../models/gym');
 const Review = require('../models/review');
-const { validateReview } = require('../middleware');
+const { isLoggedIn, isReviewAuthor, validateReview } = require('../middleware');
 
 
 // Create review
-router.post('/', validateReview, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
     const gym = await Gym.findById(req.params.id);
     const review = new Review(req.body.review);
+    review.author = req.user._id;
     gym.reviews.push(review);
     await review.save();
     await gym.save();
@@ -19,7 +20,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
 }));
 
 // Delete review
-router.delete('/:reviewId', catchAsync(async (req, res) => {
+router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Gym.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);

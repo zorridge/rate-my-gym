@@ -28,7 +28,10 @@ router.post('/', isLoggedIn, validateGym, catchAsync(async (req, res) => {
 // Read gym information
 router.get('/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
-    const gym = await Gym.findById(id).populate('reviews').populate('author');
+    const gym = await Gym.findById(id).populate({
+        path: 'reviews',
+        populate: { path: 'author' }
+    }).populate('author');
     if (!gym) {
         req.flash('error', 'Gym not found!');
         return res.redirect('/gyms');

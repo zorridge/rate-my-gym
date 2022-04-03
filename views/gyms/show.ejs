@@ -25,6 +25,7 @@
     </div>
     <div class="col-4">
         <h2 class="mb-3 text-center">Reviews</h2>
+        <% if (currentUser) { %>
         <form class="needs-validation mb-3" action="/gyms/<%= gym._id %>/reviews" method="POST" novalidate>
             <div class="mb-3">
                 <label for="rating" class="form-label">Rating</label>
@@ -38,16 +39,18 @@
             </div>
             <button class="btn btn-success">Submit</button>
         </form>
+        <% } %>
         <% for( let review of gym.reviews ) { %>
         <div class="card mb-3">
-            <div class="card-header"><%= review._id %>
-            </div>
+            <div class="card-header">Submitted by: <%= review.author.username %></div>
             <div class="card-body">
                 <h5 class="card-title">Rating: <%= review.rating %></h5>
                 <p class="card-text">Review: <%= review.body %></p>
+                <% if (currentUser && review.author.equals(currentUser._id)) { %>
                 <form action="/gyms/<%= gym._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                     <button class="btn btn-danger btn-sm ms-auto">Remove</button>
                 </form>
+                <% } %>
             </div>
         </div>
         <% } %>
