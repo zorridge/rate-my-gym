@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     folder: 'RateMyGym',
-    allowFormats: ['jpeg', 'jpg', 'png']
+    allowedFormats: ['jpeg', 'jpg', 'png']
 });
 
 module.exports = {
