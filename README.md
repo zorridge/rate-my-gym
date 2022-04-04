@@ -22,5 +22,6 @@ In progress...
 
 * [The Web Developer Bootcamp 2022](https://www.udemy.com/course/the-web-developer-bootcamp/)
 * [Starability](https://github.com/LunarLogic/starability)
+* [Cloudinary](https://cloudinary.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
