@@ -11,6 +11,7 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createGym = async (req, res) => {
     const gymNew = new Gym(req.body.gym);
+    gymNew.images = req.files.map(f => ({ url: f.path, filename: f.filename })); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#syntax
     gymNew.author = req.user._id;
     await gymNew.save();
     req.flash('success', 'Successfully added a new gym!');

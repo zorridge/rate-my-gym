@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
+
 const gyms = require('../controllers/gyms');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, isAuthor, validateGym } = require('../middleware');
@@ -9,7 +13,7 @@ const { isLoggedIn, isAuthor, validateGym } = require('../middleware');
 // *** ROUTING ***
 router.route('/')
     .get(catchAsync(gyms.index))
-    .post(isLoggedIn, validateGym, catchAsync(gyms.createGym));
+    .post(isLoggedIn, upload.array('image'), validateGym, catchAsync(gyms.createGym));
 
 router.get('/new', isLoggedIn, gyms.renderNewForm);
 
