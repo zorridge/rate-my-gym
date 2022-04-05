@@ -5,7 +5,7 @@
 
 <% for( let gym of gyms ) { %>
 <div class="card mb-3">
-    <img src="<%= gym.image %>" class="card-img-top" alt="<%= gym.title %>"
+    <img src="<%= gym.images[0].url %>" class="card-img-top" alt="<%= gym.title %>"
         style="width: 100%; height: 500px; object-fit: cover;">
     <div class="card-body">
         <h5 class="card-title"><%= gym.title %></h5>
