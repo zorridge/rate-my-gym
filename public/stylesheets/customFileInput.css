@@ -1,0 +1,12 @@
+.custom-file-input input[type=file]::-webkit-file-upload-button {
+    display: none;
+}
+
+.custom-file-input input[type=file]::file-selector-button {
+    display: none;
+}
+
+.custom-file-input:hover label {
+    background-color: #dde0e3;
+    cursor: pointer;
+}
