@@ -39,12 +39,21 @@
                 <label for="description">Description</label>
                 <div class="valid-feedback">Looks good!</div>
             </div>
-            <!-- Images -->
+            <!-- Add Images -->
             <div class="input-group mb-3 custom-file-input">
-                <input type="file" class="form-control" name="image" id="image" multiple required>
+                <input type="file" class="form-control" name="image" id="image" multiple>
                 <label class="input-group-text" for="image">Add image(s)</label>
-                <div class="valid-feedback">Looks good!</div>
             </div>
+            <!-- Delete Images -->
+            <% gym.images.forEach(function(img, i) { %>
+            <div class="mb-3">
+                <img src="<%= img.url %>" class="img-thumbnail" alt="">
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="deleteImages[]" id="image-<%=i%>" value="<%= img.filename %>">
+                </div>
+                <label for="image-<%=i%>">Delete</label>
+            </div>
+            <% }) %>
             <!-- Buttons -->
             <a class="btn btn-info" href="/gyms/<%= gym._id %>">Cancel</a>
             <button class="btn btn-success">Submit</button>
