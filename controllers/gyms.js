@@ -1,4 +1,5 @@
 const Gym = require('../models/gym');
+const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
     const gyms = await Gym.find({});
@@ -47,6 +48,12 @@ module.exports.updateGym = async (req, res) => {
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     gymUpdate.images.push(...imgs);
     await gymUpdate.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await gymUpdate.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
+    }
     req.flash('success', 'Successfully updated gym!');
     res.redirect(`/gyms/${gymUpdate._id}`);
 };
