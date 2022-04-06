@@ -19,7 +19,7 @@ router.get('/new', isLoggedIn, gyms.renderNewForm);
 
 router.route('/:id')
     .get(catchAsync(gyms.showGym))
-    .put(isLoggedIn, isAuthor, validateGym, catchAsync(gyms.updateGym))
+    .put(isLoggedIn, isAuthor, upload.array('image'), validateGym, catchAsync(gyms.updateGym))
     .delete(isLoggedIn, isAuthor, catchAsync(gyms.deleteGym));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(gyms.renderEditForm));

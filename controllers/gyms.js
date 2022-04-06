@@ -44,6 +44,9 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateGym = async (req, res) => {
     const { id } = req.params;
     const gymUpdate = await Gym.findByIdAndUpdate(id, { ...req.body.gym });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    gymUpdate.images.push(...imgs);
+    await gymUpdate.save();
     req.flash('success', 'Successfully updated gym!');
     res.redirect(`/gyms/${gymUpdate._id}`);
 };
