@@ -1,15 +1,18 @@
 <% layout('layouts/boilerplate') -%>
+<link rel="stylesheet" href="/stylesheets/customFileInput.css">
 
 <h1 class="text-center mb-3">New Gym</h1>
 <div class="row">
     <div class="col-6 offset-3">
-        <form action="/gyms" method="POST" novalidate class="needs-validation">
+        <form action="/gyms" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <!-- Name -->
             <div class="form-floating mb-3">
                 <input class="form-control" type="text" name="gym[title]" id="title" placeholder="Name"
                     autocomplete="off" required>
                 <label class="form-label" for="title">Name</label>
                 <div class="valid-feedback">Looks good!</div>
             </div>
+            <!-- Location & Price -->
             <div class="row g-2">
                 <div class="col-md-8">
                     <div class="form-floating mb-3">
@@ -28,18 +31,20 @@
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-                <input class="form-control" type="text" name="gym[image]" id="image" placeholder="Image"
-                    autocomplete="off" required>
-                <label class="form-label" for="image">Image URL</label>
-                <div class="valid-feedback">Looks good!</div>
-            </div>
+            <!-- Description -->
             <div class="form-floating mb-3">
                 <textarea class="form-control" name="gym[description]" id="description" placeholder="Description"
                     style="height: 150px;" required></textarea>
                 <label for="description">Description</label>
                 <div class="valid-feedback">Looks good!</div>
             </div>
+            <!-- Images -->
+            <div class="input-group mb-3 custom-file-input">
+                <input type="file" class="form-control" name="image" id="image" multiple required>
+                <label class="input-group-text" for="image">Add image(s)</label>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <!-- Buttons -->
             <a class="btn btn-info" href="/gyms">Cancel</a>
             <button class="btn btn-success">Submit</button>
         </form>
