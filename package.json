@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zorridge/rate-my-gym#readme",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.13.3",
     "cloudinary": "^1.29.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.0.0",
