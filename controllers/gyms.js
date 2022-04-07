@@ -14,10 +14,16 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createGym = async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.gym.location,
+        limit: 1
+    }).send();
     const gymNew = new Gym(req.body.gym);
+    gymNew.geometry = geoData.body.features[0].geometry;
     gymNew.images = req.files.map(f => ({ url: f.path, filename: f.filename })); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#syntax
     gymNew.author = req.user._id;
     await gymNew.save();
+    console.log(gymNew); // log
     req.flash('success', 'Successfully added a new gym!');
     res.redirect(`/gyms/${gymNew._id}`);
 };
