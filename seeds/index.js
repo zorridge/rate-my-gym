@@ -17,7 +17,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Gym.deleteMany({}); // DELETES EVERYTHING !!!
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 200; i++) {
         const rand1000 = Math.floor(Math.random() * 1000);
         const randPrice = Math.floor(Math.random() * 30) + 80;
         const gym = new Gym({
