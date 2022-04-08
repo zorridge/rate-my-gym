@@ -6,8 +6,13 @@
 
 <% for( let gym of gyms ) { %>
 <div class="card mb-3">
+    <% if (gym.images.length > 0) { %>
     <img src="<%= gym.images[0].url %>" class="card-img-top" alt="<%= gym.title %>"
         style="width: 100%; height: 500px; object-fit: cover;">
+    <% } else { %>
+    <img src="https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg"
+        class="card-img-top" alt="" style="width: 100%; height: 500px; object-fit: cover;">
+    <% } %>
     <div class="card-body">
         <h5 class="card-title"><%= gym.title %></h5>
         <p class="card-text"><%= gym.description %></p>
