@@ -47,8 +47,10 @@
 
     <!-- Reviews -->
     <div class="col-4">
-        <h2 class="mb-3">Leave a review!</h2>
+        <!-- Mapbox -->
+        <div id='map' style='width: 100%; height: 300px;' class="mb-3"></div>
         <!-- Form -->
+        <h2 class="mb-3">Leave a review!</h2>
         <% if (currentUser) { %>
         <form class="needs-validation mb-3" action="/gyms/<%= gym._id %>/reviews" method="POST" novalidate>
             <div class="mb-3">
@@ -97,3 +99,9 @@
         <% } %>
     </div>
 </div>
+
+<script>
+    const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const gymCoordinates = '<%-JSON.stringify(gym.geometry)%>';
+</script>
+<script src="/javascripts/showMap.js"></script>
