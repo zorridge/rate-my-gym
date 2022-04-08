@@ -11,3 +11,6 @@ const map = new mapboxgl.Map({
 new mapboxgl.Marker()
     .setLngLat(coordinates)
     .addTo(map);
+
+const nav = new mapboxgl.NavigationControl();
+map.addControl(nav, 'top-right');

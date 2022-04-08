@@ -1,18 +1,36 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1>Login</h1>
-<form action="/login" method="POST" class="needs-validation" novalidate>
-    <div class="form-floating mb-3">
-        <input class="form-control" type="text" name="username" id="username" placeholder="Username" autocomplete="off"
-            required>
-        <label class="form-label" for="username">Username</label>
-        <div class="valid-feedback">Looks good!</div>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    alt="login" class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title mb-3 fw-bold">Login</h3>
+                    <form action="/login" method="POST" class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" name="username" id="username" placeholder="Username"
+                                autocomplete="off" autofocus required>
+                            <label class="form-label" for="username">Username</label>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="password" name="password" id="password"
+                                placeholder="Password" autocomplete="off" required>
+                            <label class="form-label" for="password">Password</label>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-success">Login</button>
+                        </div>
+                        <hr>
+                        <div class="d-grid">
+                            <a href="/register" class="btn btn-info">Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-floating mb-3">
-        <input class="form-control" type="password" name="password" id="password" placeholder="Password"
-            autocomplete="off" required>
-        <label class="form-label" for="password">Password</label>
-        <div class="valid-feedback">Looks good!</div>
-    </div>
-    <button class="btn btn-success">Login</button>
-</form>
+</div>

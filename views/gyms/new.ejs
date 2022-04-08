@@ -1,52 +1,69 @@
 <% layout('layouts/boilerplate') -%>
 <link rel="stylesheet" href="/stylesheets/customFileInput.css">
 
-<h1 class="text-center mb-3">New Gym</h1>
-<div class="row">
-    <div class="col-6 offset-3">
-        <form action="/gyms" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
-            <!-- Name -->
-            <div class="form-floating mb-3">
-                <input class="form-control" type="text" name="gym[title]" id="title" placeholder="Name"
-                    autocomplete="off" required>
-                <label class="form-label" for="title">Name</label>
-                <div class="valid-feedback">Looks good!</div>
-            </div>
-            <!-- Location & Price -->
-            <div class="row g-2">
-                <div class="col-md-8">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="text" name="gym[location]" id="location"
-                            placeholder="Location" autocomplete="off" required>
-                        <label class="form-label" for="location">Location</label>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title fw-bold text-center mb-3">New Gym</h3>
+                    <form action="/gyms" method="POST" novalidate class="needs-validation"
+                        enctype="multipart/form-data">
+                        <!-- Name -->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" name="gym[title]" id="title" placeholder="Name"
+                                autocomplete="off" required>
+                            <label class="form-label" for="title">Name</label>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <!-- Location & Price -->
+                        <div class="row g-2">
+                            <div class="col-md-8">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="text" name="gym[location]" id="location"
+                                        placeholder="Location" autocomplete="off" required>
+                                    <label class="form-label" for="location">Location</label>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                                <!-- <div class="form-floating">
+                                <select class="form-select" id="location" required>
+                                    <option selected disabled hidden value="">Select an area:</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <label for="location">Area</label>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div> -->
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="number" name="gym[price]" id="price"
+                                        placeholder="Price" step="0.01" required>
+                                    <label class="form-label" for="price">Price ($)</label>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Description -->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" name="gym[description]" id="description"
+                                placeholder="Description" style="height: 150px;" required></textarea>
+                            <label for="description">Description</label>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <!-- Images -->
+                        <div class="input-group mb-3 custom-file-input">
+                            <input type="file" class="form-control" name="image" id="image" multiple required>
+                            <label class="input-group-text" for="image">Add image(s)</label>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <!-- Buttons -->
+                        <button class="btn btn-success">Submit</button>
+                        <a class="btn btn-warning" href="/gyms">Cancel</a>
+                    </form>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" name="gym[price]" id="price" placeholder="Price"
-                            step="0.01" required>
-                        <label class="form-label" for="price">Price ($)</label>
-                        <div class="valid-feedback">Looks good!</div>
-                    </div>
-                </div>
             </div>
-            <!-- Description -->
-            <div class="form-floating mb-3">
-                <textarea class="form-control" name="gym[description]" id="description" placeholder="Description"
-                    style="height: 150px;" required></textarea>
-                <label for="description">Description</label>
-                <div class="valid-feedback">Looks good!</div>
-            </div>
-            <!-- Images -->
-            <div class="input-group mb-3 custom-file-input">
-                <input type="file" class="form-control" name="image" id="image" multiple required>
-                <label class="input-group-text" for="image">Add image(s)</label>
-                <div class="valid-feedback">Looks good!</div>
-            </div>
-            <!-- Buttons -->
-            <a class="btn btn-info" href="/gyms">Cancel</a>
-            <button class="btn btn-success">Submit</button>
-        </form>
+        </div>
     </div>
 </div>

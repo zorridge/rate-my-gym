@@ -62,7 +62,7 @@ mongoose.connect('mongodb://localhost:27017/RateMyGym')
 
 // *** ROUTING ***
 app.get('/', (req, res) => {
-    res.redirect('/gyms');
+    res.render('home');
 });
 
 app.use((req, res, next) => {

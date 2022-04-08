@@ -126,3 +126,6 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
 });
+
+const nav = new mapboxgl.NavigationControl();
+map.addControl(nav, 'top-right');
