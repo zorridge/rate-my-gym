@@ -17,6 +17,8 @@ router.route('/')
 
 router.get('/new', isLoggedIn, gyms.renderNewForm);
 
+router.get('/random', gyms.randomGym);
+
 router.route('/:id')
     .get(catchAsync(gyms.showGym))
     .put(isLoggedIn, isAuthor, upload.array('image'), validateGym, catchAsync(gyms.updateGym))

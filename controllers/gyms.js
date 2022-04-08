@@ -73,3 +73,13 @@ module.exports.deleteGym = async (req, res) => {
     req.flash('success', 'Successfully deleted gym!');
     res.redirect('/gyms');
 };
+
+module.exports.randomGym = async (req, res) => {
+    Gym.estimatedDocumentCount().exec((err, count) => {
+        const random = Math.floor(Math.random() * count);
+
+        Gym.findOne().skip(random).exec((err, result) => {
+            res.redirect(`/gyms/${result._id}`);
+        });
+    });
+};
