@@ -5,7 +5,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/dark-v10', // style URL
     center: coordinates, // starting position [lng, lat]
-    zoom: 5 // starting zoom
+    zoom: 10 // starting zoom
 });
 
 new mapboxgl.Marker()
