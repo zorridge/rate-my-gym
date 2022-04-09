@@ -61,10 +61,6 @@ mongoose.connect('mongodb://localhost:27017/RateMyGym')
 
 
 // *** ROUTING ***
-app.get('/', (req, res) => {
-    res.render('home');
-});
-
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');

@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Gym = require('../models/gym');
 
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
@@ -35,4 +36,9 @@ module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', 'Logged out!');
     res.redirect('/gyms');
+};
+
+module.exports.renderHome = async (req, res) => {
+    const gyms = await Gym.find({});
+    res.render('home', { gyms });
 };
