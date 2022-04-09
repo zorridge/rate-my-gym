@@ -1,11 +1,8 @@
 <% layout('layouts/boilerplate') -%>
 <link rel="stylesheet" href="/stylesheets/gymIndex.css">
 
-<div id="map" style="width: 100%; height: 500px" class="mb-3"></div>
-
-<div class="container py-5">
-    <h1 class="text-center mb-3">All Gyms</h1>
-    <a href="/gyms/new" class="btn btn-primary mb-3">Add Gym</a>
+<div class="container py-3">
+    <h1 class="text-center mb-3 fw-bold">Explore all the gyms!</h1>
     <div class="row" id="gymList">
         <% for( let gym of gyms ) { %>
         <div class="col-lg-6">
@@ -26,15 +23,13 @@
         </div>
         <% } %>
     </div>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-secondary" id="moreButton">Click To See More</button>
+    </div>
 </div>
 
 <!-- Back to Top Button -->
 <button class="btn p-0" id="b2t" style="width: 75px;"><img src="/imgs/b2t.svg" alt="back to top button"></button>
 
-<script>
-    const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const gymsRaw = `<%-JSON.stringify(gyms)%>`;
-</script>
 <script src="/javascripts/infiniteScroll.js"></script>
 <script src="/javascripts/b2t.js"></script>
-<script src="/javascripts/indexMap.js"></script>

@@ -35,3 +35,7 @@
     display: none;
     z-index: 3;
 }
+
+.no-display {
+    display: none;
+}

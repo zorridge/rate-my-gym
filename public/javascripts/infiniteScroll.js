@@ -1,4 +1,5 @@
 const body = document.querySelector('#gymList');
+const moreButton = document.querySelector('#moreButton');
 let counter = 0;
 
 async function infiniteScroll() {
@@ -64,5 +65,10 @@ function addGym(gyms) {
 window.addEventListener('scroll', () => {
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         infiniteScroll();
+        moreButton.classList.contains('no-display') || moreButton.classList.add('no-display');
     }
+});
+
+moreButton.addEventListener('click', () => {
+    infiniteScroll();
 });
