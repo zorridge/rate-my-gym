@@ -5,7 +5,7 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
-    const gyms = await Gym.find({});
+    const gyms = await Gym.find({}).limit(4); // Return first 4 documents
     res.render('gyms/index', { gyms });
 };
 
@@ -82,4 +82,14 @@ module.exports.randomGym = async (req, res) => {
             res.redirect(`/gyms/${result._id}`);
         });
     });
+};
+
+module.exports.searchGym = async (req, res) => {
+    const { counter } = req.query;
+    if (counter) {
+        const gyms = await Gym.find({}).skip(parseInt(counter)).limit(4); // Skip {counter} number of documents and return next 4, {counter} += 4 with every iteration in browser
+        res.json(gyms);
+    } else {
+        res.redirect('/gyms');
+    }
 };
