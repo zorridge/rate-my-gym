@@ -1,29 +1,40 @@
 <% layout('layouts/boilerplate') -%>
+<link rel="stylesheet" href="/stylesheets/gymIndex.css">
 
 <div id="map" style="width: 100%; height: 500px" class="mb-3"></div>
-<h1 class="text-center mb-3">All Gyms</h1>
-<a href="/gyms/new" class="btn btn-primary mb-3">Add Gym</a>
 
-<% for( let gym of gyms ) { %>
-<div class="card mb-3">
-    <% if (gym.images.length > 0) { %>
-    <img src="<%= gym.images[0].url %>" class="card-img-top" alt="<%= gym.title %>"
-        style="width: 100%; height: 500px; object-fit: cover;">
-    <% } else { %>
-    <img src="https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg"
-        class="card-img-top" alt="" style="width: 100%; height: 500px; object-fit: cover;">
-    <% } %>
-    <div class="card-body">
-        <h5 class="card-title"><%= gym.title %></h5>
-        <p class="card-text"><%= gym.description %></p>
-        <p class="card-text"><small class="text-muted"><%= gym.location %></small></p>
-        <a href="/gyms/<%= gym._id %>">View <%= gym.title %></a>
+<div class="container py-5">
+    <h1 class="text-center mb-3">All Gyms</h1>
+    <a href="/gyms/new" class="btn btn-primary mb-3">Add Gym</a>
+    <div class="row" id="gymList">
+        <% for( let gym of gyms ) { %>
+        <div class="col-lg-6">
+            <div class="card bg-dark text-white mb-3">
+                <% if (gym.images.length > 0) { %>
+                <img src="<%= gym.images[0].url %>" class="card-img" alt="<%= gym.title %>">
+                <% } else { %>
+                <img src="https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg"
+                    class="card-img" alt="">
+                <% } %>
+                <div class="card-img-overlay">
+                    <h2 class="card-title"><%= gym.title %></h2>
+                    <p class="card-text"><%= gym.description.substring(0, 100) %>...</p>
+                    <p class="card-text fw-bold"><%= gym.location %></p>
+                    <a href="/gyms/<%= gym._id %>" class="btn btn-info btn-sm fw-bold">View <%= gym.title %></a>
+                </div>
+            </div>
+        </div>
+        <% } %>
     </div>
 </div>
-<% } %>
+
+<!-- Back to Top Button -->
+<button class="btn p-0" id="b2t" style="width: 75px;"><img src="/imgs/b2t.svg" alt="back to top button"></button>
 
 <script>
     const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
     const gymsRaw = `<%-JSON.stringify(gyms)%>`;
 </script>
+<script src="/javascripts/infiniteScroll.js"></script>
+<script src="/javascripts/b2t.js"></script>
 <script src="/javascripts/indexMap.js"></script>

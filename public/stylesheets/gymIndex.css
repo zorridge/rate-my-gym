@@ -1,0 +1,37 @@
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.card {
+    animation: entrance 500ms ease-out;
+}
+
+.card-img-overlay {
+    background: linear-gradient(0deg, #ffffff44 30%, #00000088 100%)
+}
+
+.card-title {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.card-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+#b2t {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    display: none;
+    z-index: 3;
+}
