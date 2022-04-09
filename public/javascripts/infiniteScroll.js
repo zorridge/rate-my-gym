@@ -4,7 +4,9 @@ let counter = 0;
 async function infiniteScroll() {
     counter += 4;
     let gyms = await searchGym(counter);
-    addGym(gyms);
+    if (gyms.length > 0) {
+        addGym(gyms);
+    }
 }
 
 async function searchGym(counter) {
@@ -28,7 +30,7 @@ function addGym(gyms) {
                 image.src = gym.images[0].url;
                 image.alt = gym.title;
             } else {
-                image.arc = 'https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg';
+                image.src = 'https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg';
             }
 
             const cardOverlay = document.createElement('div');
