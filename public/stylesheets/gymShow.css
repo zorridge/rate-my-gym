@@ -1,0 +1,9 @@
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+}
