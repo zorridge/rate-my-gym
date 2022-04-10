@@ -1,15 +1,51 @@
 body {
+    background-color: rgb(253, 253, 253);
     font-family: 'Montserrat', sans-serif;
 }
 
+/* nav {
+    background-color: rgb(240, 240, 240);
+} */
+
+
 .navbar-brand {
+    color: #212529;
     font-size: 1.75rem;
     font-family: 'Bebas Neue', cursive;
     padding: 3px 0 0 0;
+}
+
+.navbar-brand:hover {
+    color: #212529;
 }
 
 .navbar-brand img {
     height: 25px;
     padding-bottom: 2px;
     margin-right: 3px;
+}
+
+#navbar .nav-link {
+    font-weight: 700;
+    color: #212529;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+}
+
+#navbar .nav-link:hover {
+    color: #212529;
+    border-bottom: 3px solid #212529;
+}
+
+#footerContainer {
+    color: rgb(253, 253, 253);
+    font-size: 0.85rem;
+    background-color: #212529;
+    margin-top: 200px;
+}
+
+#footerContact a,
+#footerQuicklinks a {
+    color: rgb(253, 253, 253);
+    text-decoration: none;
 }

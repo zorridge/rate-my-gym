@@ -39,6 +39,7 @@ module.exports.logout = (req, res) => {
 };
 
 module.exports.renderHome = async (req, res) => {
+    req.session.returnTo = req.originalUrl;
     const gyms = await Gym.find({});
     res.render('home', { gyms });
 };
