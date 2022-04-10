@@ -7,15 +7,14 @@ body {
     background-color: rgb(240, 240, 240);
 } */
 
-
-.navbar-brand {
+#navbar .navbar-brand {
     color: #212529;
     font-size: 1.75rem;
     font-family: 'Bebas Neue', cursive;
     padding: 3px 0 0 0;
 }
 
-.navbar-brand:hover {
+#navbar .navbar-brand:hover {
     color: #212529;
 }
 

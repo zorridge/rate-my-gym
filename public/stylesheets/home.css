@@ -1,0 +1,56 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+/* nav {
+    background-color: rgb(240, 240, 240);
+} */
+
+#navbar .navbar-brand {
+    color: rgba(253, 253, 253);
+    font-size: 1.75rem;
+    font-family: 'Bebas Neue', cursive;
+    padding: 3px 0 0 0;
+}
+
+#navbar .navbar-brand:hover {
+    color: rgba(253, 253, 253);
+}
+
+.navbar-brand img {
+    height: 25px;
+    padding-bottom: 2px;
+    margin-right: 3px;
+}
+
+#navbar .nav-link {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+}
+
+#navbar .nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+main {
+    color: rgba(253, 253, 253);
+    width: 60vw;
+}
+
+#map {
+    width: 75%;
+    height: 300px;
+    border-radius: 15px;
+}
+
+.homeCopyright {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    font-size: 0.85rem;
+}
