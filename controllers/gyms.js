@@ -5,6 +5,7 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
+    req.session.returnTo = req.originalUrl;
     const gyms = await Gym.find({}).limit(4); // Return first 4 documents
     res.render('gyms/index', { gyms });
 };
@@ -16,19 +17,21 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createGym = async (req, res) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.gym.location,
+        countries: ['sg'], // limit to Singapore
         limit: 1
     }).send();
+    req.body.gym.location = geoData.body.features[0].place_name; // replace user input location with Mapbox data
     const gymNew = new Gym(req.body.gym);
     gymNew.geometry = geoData.body.features[0].geometry;
     gymNew.images = req.files.map(f => ({ url: f.path, filename: f.filename })); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#syntax
     gymNew.author = req.user._id;
     await gymNew.save();
-    console.log(gymNew); // log
     req.flash('success', 'Successfully added a new gym!');
     res.redirect(`/gyms/${gymNew._id}`);
 };
 
 module.exports.showGym = async (req, res) => {
+    req.session.returnTo = req.originalUrl;
     const { id } = req.params;
     const gym = await Gym.findById(id).populate({
         path: 'reviews',
@@ -69,6 +72,10 @@ module.exports.updateGym = async (req, res) => {
 
 module.exports.deleteGym = async (req, res) => {
     const { id } = req.params;
+    const gymDelete = await Gym.findById(id);
+    for (let image of gymDelete.images) {
+        await cloudinary.uploader.destroy(image.filename);
+    }
     await Gym.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted gym!');
     res.redirect('/gyms');
