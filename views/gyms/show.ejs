@@ -147,5 +147,7 @@
 <script>
     const mapboxToken = '<%-process.env.MAPBOX_TOKEN%>';
     const gymCoordinates = '<%-JSON.stringify(gym.geometry)%>';
+    const gymTitle = `<%-gym.title%>`;
+    const gymLocation = `<%-gym.location%>`;
 </script>
 <script src="/javascripts/showMap.js"></script>

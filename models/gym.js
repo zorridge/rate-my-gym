@@ -43,7 +43,7 @@ const GymSchema = new Schema({
 }, opts);
 
 GymSchema.virtual('properties.popUpMarkup').get(function () {
-    return `<strong><a href='/gyms/${this._id}'>${this.title}</a></strong>`;
+    return `<p>${this.title}</p><hr><a href='/gyms/${this._id}'>View</a>`;
 });
 
 GymSchema.post('findOneAndDelete', async function (doc) {

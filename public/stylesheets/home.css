@@ -44,9 +44,29 @@ main {
 }
 
 #map {
-    width: 75%;
-    height: 300px;
+    width: 65%;
+    height: 40vh;
     border-radius: 15px;
+}
+
+.mapboxgl-popup-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mapboxgl-popup-content p {
+    color: #212529;
+    margin: 0;
+    font-weight: 700;
+}
+
+.mapboxgl-popup-content hr {
+    color: #212529;
+    margin: 4px 0;
+    width: 100%;
 }
 
 .homeCopyright {

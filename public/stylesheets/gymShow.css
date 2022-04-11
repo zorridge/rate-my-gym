@@ -7,3 +7,7 @@
     height: 300px;
     width: 100%;
 }
+
+.mapboxgl-popup-content {
+    padding: 10px 10px 13px;
+}
