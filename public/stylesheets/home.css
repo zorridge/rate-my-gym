@@ -44,7 +44,7 @@ main {
 }
 
 #map {
-    width: 65%;
+    width: 75%;
     height: 40vh;
     border-radius: 15px;
 }
@@ -73,4 +73,17 @@ main {
     color: rgba(255, 255, 255, 0.5);
     font-style: italic;
     font-size: 0.85rem;
+}
+
+@media screen and (max-width: 768px) {
+    #map {
+        width: 100vw;
+        border-radius: 0px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 769px) {
+    #map {
+        width: 100%;
+    }
 }
