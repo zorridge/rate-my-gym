@@ -16,6 +16,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 
 const ExpressError = require('./utils/ExpressError');
 const gymRoutes = require('./routes/gym');
@@ -46,7 +47,6 @@ const scriptSrcUrls = [
     "https://cdnjs.cloudflare.com/",
     "https://cdn.jsdelivr.net",
 ];
-
 const styleSrcUrls = [
     "https://kit-free.fontawesome.com/",
     "https://stackpath.bootstrapcdn.com/",
@@ -56,19 +56,16 @@ const styleSrcUrls = [
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net"
 ];
-
 const connectSrcUrls = [
     "https://api.mapbox.com/",
     "https://a.tiles.mapbox.com/",
     "https://b.tiles.mapbox.com/",
     "https://events.mapbox.com/",
 ];
-
 const fontSrcUrls = [
     "https://fonts.gstatic.com/",
     "https://cdn.jsdelivr.net"
 ];
-
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -90,7 +87,30 @@ app.use(
     })
 );
 
+// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/RateMyGym';
+mongoose.connect(dbUrl)
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch(error => {
+        console.log("Connection to MongoDB failed");
+        console.log(error);
+    });
+
+const store = new MongoStore({
+    mongoUrl: dbUrl,
+    secret: 'thisisasecret!',
+    touchAfter: 24 * 60 * 60 // In seconds
+
+});
+
+store.on('error', function (e) {
+    console.log('Session store error', e);
+});
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'thisisasecret!',
     resave: false,
@@ -98,7 +118,7 @@ const sessionConfig = {
     cookie: {
         httpOnly: true,
         // secure: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // In milliseconds
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 };
@@ -110,15 +130,6 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-mongoose.connect('mongodb://localhost:27017/RateMyGym')
-    .then(() => {
-        console.log("Connected to MongoDB");
-    })
-    .catch(error => {
-        console.log("Connection to MongoDB failed");
-        console.log(error);
-    });
 
 
 
