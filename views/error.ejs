@@ -1,14 +1,28 @@
-<% layout('layouts/boilerplate') -%>
+<!-- Modified from https://codepen.io/theyve/pen/zpxrLG -->
 
-<div class="row">
-    <div class="col-8 offset-2">
-        <div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading"><%= err.message %></h4>
-            <% if (process.env.NODE_ENV !== 'production') { %>
-            <p><%= err.stack %></p>
-            <hr>
-            <p class="mb-0">Status Code: <b><%= statusCode %></b></p>
-            <% } %>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= statusCode %></title>
+    <link rel="stylesheet" href="/stylesheets/error.css">
+</head>
+
+<body>
+    <a href="/">
+        <svg height="0.8em" width="0.8em" viewBox="0 0 2 1" preserveAspectRatio="none">
+            <polyline fill="none" stroke="#777777" stroke-width="0.1" points="0.9,0.1 0.1,0.5 0.9,0.9" />
+        </svg> RateMyGym
+    </a>
+    <div class="background-wrapper">
+        <h1 id="visual"><%= statusCode %></h1>
+        <p>Oops... here's what our server says<span class="error-message"><br><%= err.message %></span></p>
     </div>
-</div>
+
+    <script src="/javascripts/error.js"></script>
+</body>
+
+</html>
