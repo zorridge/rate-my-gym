@@ -3,6 +3,7 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* nav {
@@ -66,6 +67,7 @@ main p {
 }
 
 .mapboxgl-popup-content p {
+    font-size: 1rem;
     color: #212529;
     margin: 0;
     font-weight: 700;
@@ -83,14 +85,34 @@ main p {
     font-size: 0.85rem;
 }
 
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    p,
+    .homeCopyright,
+    main a {
+        font-size: 14px !important;
+    }
+
+    #navbar .nav-link {
+        font-size: 14px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     #map {
         width: 100vw;
         border-radius: 0px;
     }
+
+    main {
+        width: 90vw;
+    }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 769px) {
+@media screen and (max-width: 1200px) and (min-width: 768px) {
     #map {
         width: 100%;
     }
