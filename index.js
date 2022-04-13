@@ -87,8 +87,9 @@ app.use(
     })
 );
 
-// const dbUrl = process.env.DB_URL;
-const dbUrl = 'mongodb://localhost:27017/RateMyGym';
+const secret = process.env.SECRET || 'salted egg cat';
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/RateMyGym';
 mongoose.connect(dbUrl)
     .then(() => {
         console.log("Connected to MongoDB");
@@ -100,7 +101,7 @@ mongoose.connect(dbUrl)
 
 const store = new MongoStore({
     mongoUrl: dbUrl,
-    secret: 'thisisasecret!',
+    secret,
     touchAfter: 24 * 60 * 60 // In seconds
 
 });
@@ -112,7 +113,7 @@ store.on('error', function (e) {
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisisasecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -160,6 +161,12 @@ app.use((err, req, res, next) => {
 
 
 // *** OPENING SERVER ***
-app.listen(3000, () => {
-    console.log('App running on http://localhost:3000/');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    if (process.env.NODE_ENV !== 'production') {
+        console.log('App serving on http://localhost:3000/');
+    } else {
+        console.log(`Serving on port ${port}`);
+    }
 });
