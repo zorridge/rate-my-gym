@@ -56,13 +56,13 @@
                             <div class="form-check form-switch form-check-inline mt-3">
                                 <input class="form-check-input" type="checkbox" role="switch" name="deleteImages[]"
                                     id="image-<%=i%>" value="<%= img.filename %>">
-                                <label class="form-check-label" for="image-<%=i%>">Remove</label>
+                                <label class="form-check-label fw-bold" for="image-<%=i%>">Remove</label>
                             </div>
                         </div>
                         <% }) %>
                         <!-- Buttons -->
-                        <button class="btn btn-success">Submit</button>
-                        <a class="btn btn-warning" href="/gyms/<%= gym._id %>">Cancel</a>
+                        <button class="btn btn-success fw-bold">Submit</button>
+                        <a class="btn btn-warning fw-bold" href="/gyms/<%= gym._id %>">Cancel</a>
                     </form>
                 </div>
             </div>

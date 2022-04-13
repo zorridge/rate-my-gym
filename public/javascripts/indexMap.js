@@ -4,8 +4,8 @@ const gyms = { features: JSON.parse(gymsRaw) };
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-95.7129, 37.0902],
-    zoom: 3
+    center: [103.8198, 1.3521], //US - center: [-95.7129, 37.0902],
+    zoom: 10.5 // zoom: 3
 });
 
 map.on('load', () => {

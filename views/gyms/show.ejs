@@ -37,8 +37,8 @@
                     <% if (currentUser && gym.author.equals(currentUser._id)) { %>
                     <!-- Alternatively, gym.author._id.toString() == currentUser._id.toString() can be used instead to compare ObjectID -->
                     <div>
-                        <a class="btn btn-info" href="/gyms/<%= gym._id %>/edit">Edit</a>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        <a class="btn btn-info fw-bold" href="/gyms/<%= gym._id %>/edit">Edit</a>
+                        <button type="button" class="btn btn-danger fw-bold" data-bs-toggle="modal"
                             data-bs-target="#confirmDelete">Delete</button>
                     </div>
                     <!-- Modal -->
@@ -56,10 +56,10 @@
                                     </h5>
                                 </div>
                                 <div class="modal-footer d-flex justify-content-center">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-secondary fw-bold"
                                         data-bs-dismiss="modal">Close</button>
                                     <form class="d-inline" action="/gyms/<%= gym._id %>?_method=DELETE" method="POST">
-                                        <button class="btn btn-danger">Delete</button>
+                                        <button class="btn btn-danger fw-bold">Delete</button>
                                     </form>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-success">Submit</button>
+                            <button class="btn btn-success fw-bold">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="card-body">
                     <h3 class="fw-bold mb-2 text-center">Login to review!</h3>
                     <div class="d-grid mb-3">
-                        <a href="/login" class="btn btn-success">Login</a>
+                        <a href="/login" class="btn btn-success fw-bold">Login</a>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <p class="card-text">Review: <%= review.body %></p>
                     <% if (currentUser && review.author.equals(currentUser._id)) { %>
                     <form action="/gyms/<%= gym._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger btn-sm ms-auto">Remove</button>
+                        <button class="btn btn-danger btn-sm fw-bold ms-auto">Remove</button>
                     </form>
                     <% } %>
                 </div>

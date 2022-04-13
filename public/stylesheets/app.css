@@ -3,6 +3,24 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 /* nav {
     background-color: rgb(240, 240, 240);
 } */
@@ -24,6 +42,10 @@ body {
     margin-right: 3px;
 }
 
+.titleBlue {
+    color: #0dcaf0;
+}
+
 #navbar .nav-link {
     font-weight: 700;
     color: #212529;
@@ -40,11 +62,23 @@ body {
     color: rgb(253, 253, 253);
     font-size: 0.85rem;
     background-color: #212529;
-    margin-top: 200px;
+    margin-top: 5vh;
 }
 
 #footerContact a,
 #footerQuicklinks a {
     color: rgb(253, 253, 253);
     text-decoration: none;
+}
+
+.footerCopyright {
+    font-size: 0.75rem;
+    font-style: italic;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+    #footerContainer {
+        margin-top: 25vh;
+    }
 }

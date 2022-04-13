@@ -43,6 +43,14 @@ main {
     width: 60vw;
 }
 
+main p {
+    font-weight: 700;
+}
+
+.titleBlue {
+    color: #0dcaf0;
+}
+
 #map {
     width: 75%;
     height: 40vh;
