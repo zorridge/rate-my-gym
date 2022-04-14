@@ -31,11 +31,11 @@ function addGym(gyms) {
                 image.src = gym.images[0].url;
                 image.alt = gym.title;
             } else {
-                image.src = 'https://res.cloudinary.com/zorridge/image/upload/v1649169118/RateMyGym/l7r2d7xuosy92ypbimed.jpg';
+                image.src = 'https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
             }
 
             const cardOverlay = document.createElement('div');
-            cardOverlay.classList.add('card-img-overlay');
+            cardOverlay.classList.add('card-img-overlay', 'd-flex', 'flex-column');
 
             const cardTitle = document.createElement('h2');
             cardTitle.classList.add('card-title');
@@ -50,7 +50,7 @@ function addGym(gyms) {
             cardLocation.innerText = gym.location;
 
             const cardLink = document.createElement('a');
-            cardLink.classList.add('btn', 'btn-info', 'btn-sm', 'fw-bold');
+            cardLink.classList.add('btn', 'btn-info', 'btn-sm', 'fw-bold', 'mt-auto');
             cardLink.href = `/gyms/${gym._id}`;
             cardLink.innerText = `View ${gym.title}`;
 
