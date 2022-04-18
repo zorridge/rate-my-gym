@@ -30,7 +30,7 @@ Functionalities include:
 * Image upload and cloud storage using **Cloudinary**
 * Geocoding using **Mapbox API**
 * Interactive cluster map using **Mapbox GL JS**
-* Basic security functionalities using **HTML sanitizing and helmet.js**
+* Basic security using **HTML sanitizing and helmet.js**
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
