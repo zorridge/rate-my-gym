@@ -40,33 +40,30 @@ app.use(
 );
 
 const scriptSrcUrls = [
-    "https://stackpath.bootstrapcdn.com/",
-    "https://api.tiles.mapbox.com/",
-    "https://api.mapbox.com/",
-    "https://kit.fontawesome.com/",
-    "https://cdnjs.cloudflare.com/",
-    "https://cdn.jsdelivr.net",
+    'https://stackpath.bootstrapcdn.com/',
+    'https://api.tiles.mapbox.com/',
+    'https://api.mapbox.com/',
+    'https://kit.fontawesome.com/',
+    'https://cdnjs.cloudflare.com/',
+    'https://cdn.jsdelivr.net'
 ];
 const styleSrcUrls = [
-    "https://kit-free.fontawesome.com/",
-    "https://stackpath.bootstrapcdn.com/",
-    "https://api.mapbox.com/",
-    "https://api.tiles.mapbox.com/",
-    "https://fonts.googleapis.com/",
-    "https://use.fontawesome.com/",
-    "https://cdn.jsdelivr.net"
+    'https://kit-free.fontawesome.com/',
+    'https://stackpath.bootstrapcdn.com/',
+    'https://api.mapbox.com/',
+    'https://api.tiles.mapbox.com/',
+    'https://fonts.googleapis.com/',
+    'https://use.fontawesome.com/',
+    'https://cdn.jsdelivr.net'
 ];
 const connectSrcUrls = [
-    "https://api.mapbox.com/",
-    "https://*.tiles.mapbox.com",
-    "https://a.tiles.mapbox.com/",
-    "https://b.tiles.mapbox.com/",
-    "https://events.mapbox.com/",
+    'https://api.mapbox.com/',
+    'https://*.tiles.mapbox.com',
+    'https://a.tiles.mapbox.com/',
+    'https://b.tiles.mapbox.com/',
+    'https://events.mapbox.com/'
 ];
-const fontSrcUrls = [
-    "https://fonts.gstatic.com/",
-    "https://cdn.jsdelivr.net"
-];
+const fontSrcUrls = ['https://fonts.gstatic.com/', 'https://cdn.jsdelivr.net'];
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
@@ -74,30 +71,31 @@ app.use(
             connectSrc: ["'self'", ...connectSrcUrls],
             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-            workerSrc: ["'self'", "blob:"],
-            childSrc: ["blob:"],
+            workerSrc: ["'self'", 'blob:'],
+            childSrc: ['blob:'],
             objectSrc: [],
             imgSrc: [
                 "'self'",
-                "blob:",
-                "data:",
-                "https://res.cloudinary.com/zorridge/",
-                "https://images.unsplash.com/",
+                'blob:',
+                'data:',
+                'https://res.cloudinary.com/zorridge/',
+                'https://images.unsplash.com/'
             ],
-            fontSrc: ["'self'", ...fontSrcUrls],
-        },
+            fontSrc: ["'self'", ...fontSrcUrls]
+        }
     })
 );
 
 const secret = process.env.SECRET || 'salted egg cat';
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/RateMyGym';
-mongoose.connect(dbUrl)
+mongoose
+    .connect(dbUrl)
     .then(() => {
-        console.log("Connected to MongoDB");
+        console.log('Connected to MongoDB');
     })
     .catch(error => {
-        console.log("Connection to MongoDB failed");
+        console.log('Connection to MongoDB failed');
         console.log(error);
     });
 
@@ -105,7 +103,6 @@ const store = new MongoStore({
     mongoUrl: dbUrl,
     secret,
     touchAfter: 24 * 60 * 60 // In seconds
-
 });
 
 store.on('error', function (e) {
@@ -134,8 +131,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
 // *** ROUTING ***
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
@@ -148,7 +143,6 @@ app.use('/', userRoutes);
 app.use('/gyms', gymRoutes);
 app.use('/gyms/:id/reviews', reviewRoutes);
 
-
 // Error handler
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page not found...', 404));
@@ -159,8 +153,6 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = 'Something went wrong...';
     res.status(statusCode).render('error', { err, statusCode });
 });
-
-
 
 // *** OPENING SERVER ***
 const port = process.env.PORT || 3000;
