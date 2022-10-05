@@ -1,5 +1,9 @@
 # RateMyGym - A Gym Review CRUD Web App
 
+Give it a try to get the full experience! https://rate-my-gym.herokuapp.com 
+
+<sup>*(Please expect a short delay in loading due to Heroku's web dyno sleeping)*</sup>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -7,7 +11,6 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -16,26 +19,25 @@
 
 ![image](https://user-images.githubusercontent.com/86993236/163321762-f81c9741-3e66-4261-996b-ed9d26ef734d.png)
 
-RateMyGym is a mobile-friendly, full stack gym review web app built using **Node.js, Express, and MongoDB**. 
+Leveraging RESTful routing, RateMyGym is a mobile-friendly, full stack gym review web app built using **Node.js, Express, and MongoDB**. 
 
-Leveraging RESTful routing, RateMyGym is a **CRUD (Create, Read, Update, Delete)** application where one can register an account to create and review gyms.
-
-Other functionalities include: 
-* Authentication using **Passport.js**
-* Authorisation, session management, and flash messages using **express-session**
+Functionalities include: 
+* CRUD operations (gyms and reviews) using **Mongoose** as the ODM
 * Client-side validation with UI indicators
 * Server-side validation using **joi**
+* Authentication using **Passport.js**
+* Authorisation, session management, and flash messages using **express-session**
 * Image upload and cloud storage using **Cloudinary**
 * Geocoding using **Mapbox API**
 * Interactive cluster map using **Mapbox GL JS**
-* Basic security functionalities like HTML sanitizing and helmet.js.
+* Basic security using **HTML sanitizing and helmet.js**
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- BUILT WITH -->
 ## Built With
 
-The project is organised under the MVC pattern. 
+The project implements the MVC architecture.
 
 **Main stack**
 * EJS
